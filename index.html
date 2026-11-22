@@ -259,7 +259,8 @@ var ALL1500 = {"U01":{"id":"U01","title":"Why We Keep Things for Less Time","sub
     $("q-hint").textContent="提示："+(q.hint||"根据题意判断");
     $("q-feedback").hidden=true;$("next-btn").hidden=true;
     var box=$("q-options");box.innerHTML="";
-    session.options=shuffled(q.options);
+    // 解析里用“A 的…、C 与原文相反”指代选项，打乱会让字母与内容错位
+    session.options=q.options.slice();
     session.options.forEach(function(opt,i){
       var b=document.createElement("button");b.className="opt";b.type="button";
       var L=document.createElement("span");L.className="letter";L.textContent="ABCD"[i];
